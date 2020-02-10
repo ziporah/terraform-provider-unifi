@@ -22,7 +22,7 @@ case "$1" in
       -e TZ='America/New_York' \
       -v $(pwd)/testdata/unifi:/unifi \
       --name unifi \
-      jacobalberty/unifi:stable
+      jacobalberty/unifi:${2:-stable}
 
     echo "Waiting for login page..."
     timeout 300 bash -c 'while [[ "$(curl --insecure -s -o /dev/null -w "%{http_code}" https://localhost:8443/manage/account/login)" != "200" ]]; do sleep 5; done'
